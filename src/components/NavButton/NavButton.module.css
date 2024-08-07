@@ -6,6 +6,9 @@
     padding: 0.5em 1em;
   
 }
+label{
+    padding:05.em;
+}
 
 button{
     background-color: #007BFF;
