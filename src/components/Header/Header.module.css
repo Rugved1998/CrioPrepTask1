@@ -1,0 +1,10 @@
+.header{
+    display: flex;
+    justify-content: center;
+    background-color: lightblue;
+}
+
+.h1{
+    color:black;
+    font-family: sans-serif;
+}

@@ -1,0 +1,10 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    background-color: lightblue;
+}
+
+.small{
+    color:black;
+    font-family: sans-serif;
+}
