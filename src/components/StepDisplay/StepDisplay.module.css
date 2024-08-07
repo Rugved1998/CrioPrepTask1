@@ -1,0 +1,13 @@
+.content {
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.active {
+    background-color: red;
+}
+
+.inactive {
+    background-color: green;
+}

@@ -1,9 +1,11 @@
+
+
 import styles from './PersonalInfo.module.css';
 
 const PersonalInfo=()=>{
 return(
     <div className={styles.content}>
-        <h1> Personal Information Form</h1>
+        <h1> Personal Information </h1>
         <form className={styles.form}>
               
             <input type ='text' placeholder='Enter your Name'/>
