@@ -16,10 +16,51 @@ import FormContent from './components/FormContent/FormContent';
 
 function App() {
   const [currStep,setCurrStep]=useState(1);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    zip: '',
+  });
+  const [errors, setErrors] = useState({});
+
+  const validateStep = (step) => {
+    let tempErrors = {};
+    if (step === 1) {
+      if (!formData.name) tempErrors.name = 'Name is required';
+      if (!/^[a-zA-Z]+$/.test(formData.name))  tempErrors.name = "Name can only contain alphabets";
+      if (!formData.email) tempErrors.email = 'Email is required';
+      if (!/\S+@\S+\.\S+/.test(formData.email)) tempErrors.email = "Email is invalid";
+      if (!formData.phone) tempErrors.phone = 'Phone is required';
+      if (!(formData.phone.length===10)) tempErrors.phone = 'Phone number should be less than 10 digits';
+      if (!/^\d+$/.test(formData.phone)) tempErrors.phone = "Phone number is invalid";
+    } else if (step === 2) {
+      if (!formData.address1) tempErrors.address1 = 'Address Line 1 is required';
+      if (!formData.city) tempErrors.city = 'City is required';
+      if (!formData.state) tempErrors.state = 'State is required';
+      if (!formData.zip) tempErrors.zip = 'Zip Code is required';
+      if (!(formData.zip.length===6)) tempErrors.zip = 'Zip code should have 6 digits';
+      if (!/^\d+$/.test(formData.zip)) tempErrors.zip = "Zip code is invalid";
+
+    }
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
   const forward = () => {
+    if (validateStep(currStep)) {
     if (currStep < 3) {
       setCurrStep(currStep + 1);
     }
+  }
+  else{
+    alert("Please correct the mentioned errors");
+  }
   }
 
   const backward = () => {
@@ -57,7 +98,7 @@ function App() {
     <Header/>
     
     <StepDisplay currStep={currStep}/>
-    <FormContent currStep={currStep}/>
+    <FormContent currStep={currStep}  formData={formData} setFormData={setFormData} errors={errors}  />
     <Navbar currStep={currStep} forward={forward} backward={backward}/>
     <Footer/>
   </div>
