@@ -1,9 +1,11 @@
 import styles from './NavButton.module.css';
 
-const NavButton=({text})=>{
+const NavButton=({text,flag,action})=>{
+
+
 return(
     <div className={styles.navbutton}>
-    <button>{text}</button>
+    <button disabled={flag} onClick={action}>{text}</button>
     </div>
 );
 

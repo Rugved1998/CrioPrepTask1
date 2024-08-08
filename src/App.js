@@ -15,6 +15,17 @@ import { useState } from 'react';
 
 function App() {
   const [currStep,setCurrStep]=useState(1);
+  const forward = () => {
+    if (currStep < 3) {
+      setCurrStep(currStep + 1);
+    }
+  }
+
+  const backward = () => {
+    if (currStep > 1) {
+      setCurrStep(currStep - 1);
+    }
+  }
   
   const renderStepContent = (step) => {
     switch (step) {
@@ -58,7 +69,7 @@ function App() {
     
     <StepDisplay currStep={currStep}/>}
     {renderStepContent(currStep)}
-    <Navbar/>
+    <Navbar currStep={currStep} forward={forward} backward={backward}/>
     <Footer/>
   </div>
   );
