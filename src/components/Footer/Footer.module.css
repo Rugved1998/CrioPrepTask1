@@ -1,8 +1,16 @@
-.footer{
+ .footer {
+    background-color: #004080;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* .footer{
     display: flex;
     justify-content: center;
     background-color: #ADD8E6;
-}
+} */
 
 .small{
     color:black;

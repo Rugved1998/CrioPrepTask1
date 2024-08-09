@@ -4,18 +4,14 @@ const PersonalInfo=({ formData, handleForm, errors })=>{
     const handleChange = (e) => {
         const { name, value } = e.target;
         handleForm({ name, value });
-       
-        console.log("Updated Form Data:", formData);
-        // console.log("Saving to localStorage:", formData);
-        // localStorage.setItem('formData', JSON.stringify(formData));
       };
     
     
 
 return(
-    <div className={styles.content}>
+    <div className={`${styles.container} ${styles.active}`}>
         <h1> Personal Information </h1>
-        <form className={styles.form}>
+        <form className={`${styles.form} ${styles.active}`}>
               
             <input type ='text' name='name' placeholder='Enter your Name'  value={formData.name} onChange={handleChange}/>
             {errors.name && <div className={styles.error}>{errors.name}</div>}

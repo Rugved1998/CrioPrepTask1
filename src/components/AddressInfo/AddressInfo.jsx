@@ -7,7 +7,7 @@ const AddressInfo=({ formData, handleForm, errors  })=>{
       };
 
 return(
-    <div className={styles.content}>
+    <div className={styles.container}>
         <h1> Address Information</h1>
         <form className={styles.form}>
               

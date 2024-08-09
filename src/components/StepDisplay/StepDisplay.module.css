@@ -1,13 +1,53 @@
 .content {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     color: #FFFFFF;
 }
 
-.active {
-    background-color: red;
+
+.step-indicator-div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-.inactive {
+.step-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.step-indicator.active {
     background-color: green;
+    color: white;
+    border-color: green;
+}
+
+.step-indicator.inactive {
+    background-color: lightgray;
+    color: darkgray;
+    border-color: lightgray;
+}
+
+.progressbar {
+    position: relative;
+    height: 10px;
+    width: 100%;
+    background-color: lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: green;
+    transition: width 0.3s ease-in-out;
 }

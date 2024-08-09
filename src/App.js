@@ -3,18 +3,15 @@ import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
-// import PersonalInfo from './components/PersonalInfo/PersonalInfo';
-// import AddressInfo from './components/AddressInfo/AddressInfo';
-// import Confirmation from './components/Confirmation/Confirmation';
 import StepDisplay from './components/StepDisplay/StepDisplay';
 import { useState,useEffect } from 'react';
 import FormContent from './components/FormContent/FormContent';
 
 
 
-
-
 function App() {
+  
+  
   const [currStep,setCurrStep]=useState(1);
 
   const [formData, setFormData] = useState({
@@ -32,24 +29,11 @@ function App() {
 
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // useEffect(() => {
-  //   // Load the data from localStorage when the component mounts
-  //   const savedData = JSON.parse(localStorage.getItem('formData'));
-  //   if (savedData) {
-  //     setFormData(savedData);
-  //   }
-  
-  //   // Save formData to localStorage whenever it changes
-  //   if (formData !== savedData) { 
-  //     localStorage.setItem('formData', JSON.stringify(formData));
-  //     console.log("Saving to localStorage:", formData);
-  //   }
-  // }, [formData]);
 
   useEffect(() => {
    
     const savedData = JSON.parse(localStorage.getItem('formData'));
-    console.log(savedData)
+    
     if (savedData) {
       console.log("Loaded from localStorage:", savedData);
       setIsInitialLoad(false);
@@ -62,11 +46,9 @@ function App() {
 
   useEffect(() => {
     if(!isInitialLoad){
-      console.log("Saving to localStorage:", formData);
+     
     localStorage.setItem('formData', JSON.stringify(formData));
     }
-      
-    
     
   }, [formData,isInitialLoad]);
 
