@@ -4,12 +4,12 @@ import Confirmation from '../Confirmation/Confirmation';
 import PersonalInfo from '../PersonalInfo/PersonalInfo';
 // import styles from './FormContent.module.css';
 
-const FormContent=({currStep, formData, setFormData, errors })=>{
+const FormContent=({currStep, formData, handleForm, errors })=>{
     switch (currStep) {
         case 1:
-          return <PersonalInfo  formData={formData} setFormData={setFormData} errors={errors} />;
+          return <PersonalInfo  formData={formData} handleForm={handleForm} errors={errors} />;
         case 2:
-          return <AddressInfo formData={formData} setFormData={setFormData} errors={errors} />;
+          return <AddressInfo formData={formData} handleForm={handleForm} errors={errors} />;
         case 3:
           return <Confirmation formData={formData}/>;
         default:

@@ -1,9 +1,13 @@
 import styles from './PersonalInfo.module.css';
 
-const PersonalInfo=({ formData, setFormData, errors })=>{
+const PersonalInfo=({ formData, handleForm, errors })=>{
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        handleForm({ name, value });
+       
+        console.log("Updated Form Data:", formData);
+        // console.log("Saving to localStorage:", formData);
+        // localStorage.setItem('formData', JSON.stringify(formData));
       };
     
     

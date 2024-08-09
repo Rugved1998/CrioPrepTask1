@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 // import AddressInfo from './components/AddressInfo/AddressInfo';
 // import Confirmation from './components/Confirmation/Confirmation';
 import StepDisplay from './components/StepDisplay/StepDisplay';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import FormContent from './components/FormContent/FormContent';
 
 
@@ -26,8 +26,53 @@ function App() {
     city: '',
     state: '',
     zip: '',
+
   });
   const [errors, setErrors] = useState({});
+
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // useEffect(() => {
+  //   // Load the data from localStorage when the component mounts
+  //   const savedData = JSON.parse(localStorage.getItem('formData'));
+  //   if (savedData) {
+  //     setFormData(savedData);
+  //   }
+  
+  //   // Save formData to localStorage whenever it changes
+  //   if (formData !== savedData) { 
+  //     localStorage.setItem('formData', JSON.stringify(formData));
+  //     console.log("Saving to localStorage:", formData);
+  //   }
+  // }, [formData]);
+
+  useEffect(() => {
+   
+    const savedData = JSON.parse(localStorage.getItem('formData'));
+    console.log(savedData)
+    if (savedData) {
+      console.log("Loaded from localStorage:", savedData);
+      setIsInitialLoad(false);
+      setFormData(savedData);
+    }
+    
+    console.log(savedData)
+   
+  }, []);
+
+  useEffect(() => {
+    if(!isInitialLoad){
+      console.log("Saving to localStorage:", formData);
+    localStorage.setItem('formData', JSON.stringify(formData));
+    }
+      
+    
+    
+  }, [formData,isInitialLoad]);
+
+  const handleForm=({name, value})=>{
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
 
   const validateStep = (step) => {
     let tempErrors = {};
@@ -98,7 +143,7 @@ function App() {
     <Header/>
     
     <StepDisplay currStep={currStep}/>
-    <FormContent currStep={currStep}  formData={formData} setFormData={setFormData} errors={errors}  />
+    <FormContent currStep={currStep}  formData={formData} handleForm={handleForm} errors={errors}  />
     <Navbar currStep={currStep} forward={forward} backward={backward}/>
     <Footer/>
   </div>

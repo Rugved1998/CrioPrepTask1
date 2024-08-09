@@ -1,9 +1,9 @@
 import styles from './AddressInfo.module.css';
 
-const AddressInfo=({ formData, setFormData, errors  })=>{
+const AddressInfo=({ formData, handleForm, errors  })=>{
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        handleForm({ name, value });
       };
 
 return(
