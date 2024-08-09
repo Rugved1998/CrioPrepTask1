@@ -11,9 +11,10 @@ import FormContent from './components/FormContent/FormContent';
 
 function App() {
   
-  
+  // State to track the current step in the form
   const [currStep,setCurrStep]=useState(1);
 
+   // State to hold form data
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,40 +26,41 @@ function App() {
     zip: '',
 
   });
+
+   // State to hold form validation errors
   const [errors, setErrors] = useState({});
 
+    // State to track if it's the initial load of the form (for localStorage)
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
 
+  // Load form data from localStorage on component mount
   useEffect(() => {
    
     const savedData = JSON.parse(localStorage.getItem('formData'));
-    
     if (savedData) {
-      console.log("Loaded from localStorage:", savedData);
       setIsInitialLoad(false);
       setFormData(savedData);
     }
-    
-    console.log(savedData)
-   
   }, []);
 
+ // Save form data to localStorage when it changes (excluding the initial load)
   useEffect(() => {
     if(!isInitialLoad){
-     
     localStorage.setItem('formData', JSON.stringify(formData));
-    }
-    
+    } 
   }, [formData,isInitialLoad]);
 
+   // Handle form field changes and update the formData state
   const handleForm=({name, value})=>{
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
+  // Validate the form based on the current step
   const validateStep = (step) => {
     let tempErrors = {};
     if (step === 1) {
+      // Validate the fields in step 1 (Personal Information)
       if (!formData.name) tempErrors.name = 'Name is required';
       if (!/^[a-zA-Z]+$/.test(formData.name))  tempErrors.name = "Name can only contain alphabets";
       if (!formData.email) tempErrors.email = 'Email is required';
@@ -67,6 +69,7 @@ function App() {
       if (!(formData.phone.length===10)) tempErrors.phone = 'Phone number should be less than 10 digits';
       if (!/^\d+$/.test(formData.phone)) tempErrors.phone = "Phone number is invalid";
     } else if (step === 2) {
+      // Validate the fields in step 2 (Address Information)
       if (!formData.address1) tempErrors.address1 = 'Address Line 1 is required';
       if (!formData.city) tempErrors.city = 'City is required';
       if (!formData.state) tempErrors.state = 'State is required';
@@ -79,6 +82,8 @@ function App() {
     return Object.keys(tempErrors).length === 0;
   };
 
+
+ // Function to move to the next step in the form
   const forward = () => {
     if (validateStep(currStep)) {
     if (currStep < 3) {
@@ -90,6 +95,7 @@ function App() {
   }
   }
 
+   // Function to move to the previous step in the form
   const backward = () => {
     if (currStep > 1) {
       setCurrStep(currStep - 1);

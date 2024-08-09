@@ -1,3 +1,55 @@
+Multi-Step Form with React
+
+Objective
+The objective of this project is to build a responsive multi-step form using React.js. The form consists of three steps, first two steps requiring user input, with data validation and error handling. The form's data should persist in local storage, and users must complete the steps sequentially. Later this stored data is viewed in the third step.
+
+Features:
+
+Multi-Step Form Structure:
+Step 1: Personal Information (Name, Email, Phone)
+Step 2: Address Information (Address Line 1, Address Line 2, City, State, Zip Code)
+Step 3: Confirmation (Review all entered data)
+
+Navigation and Buttons:
+Tabbed navigation is used to switch between steps.
+The back button is disabled on the first step.
+The next button is disabled on the last step and replaced with a submit button.
+
+Validation:
+Client-side validation is implemented to ensure all fields are filled before allowing navigation to the next step.
+Appropriate error messages are displayed if fields are empty or invalid (e.g., incorrect email format).
+Fields with errors are highlighted.
+
+State Management:
+Form data is managed using React's useState and useEffect hooks.
+State updates reflect user inputs and form navigation.
+
+Local Storage:
+Entered data is persisted in local storage when the user navigates between steps.
+Form fields are pre-filled if the user revisits the form.
+
+Responsive Design:
+The form is responsive and works well on desktop, tablet, and mobile screens.
+
+
+Enhanced User Experience:
+Animations or transitions between steps are included to improve the user experience.
+
+Project Structure
+The project is structured using reusable components with a clear separation of concerns. The following components are included:
+
+Header: Displays the form's title.
+Footer: Contains any footer content or links.
+StepDisplay: Indicates the current step in the form.
+FormContent: Renders the appropriate form fields based on the current step.
+Navbar: Contains navigation buttons for moving between steps.
+
+
+Assumptions and Decisions:
+The form uses localStorage for data persistence, meaning data will persist between sessions as long as the user doesn't clear their browser's storage.
+Basic validation is applied to ensure required fields are filled and formatted correctly before proceeding to the next step.
+The form is designed to be responsive and accessible on various screen sizes, with particular attention paid to mobile usability.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
